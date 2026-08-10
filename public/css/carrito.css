@@ -1,0 +1,75 @@
+.alerta {
+  padding: 14px 18px;
+  margin-bottom: 22px;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  background: var(--panel);
+}
+
+.alerta-exito {
+  color: var(--exito);
+  border-color: var(--exito);
+}
+
+.alerta-error {
+  color: var(--peligro);
+  border-color: var(--peligro);
+}
+
+.item-icono {
+  overflow: hidden;
+}
+
+.item-icono img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-info small {
+  color: var(--texto-secundario);
+}
+
+.item-acciones {
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 190px;
+}
+
+.form-cantidad {
+  display: flex;
+  gap: 8px;
+}
+
+.form-cantidad input {
+  width: 72px;
+}
+
+.subtotal-item {
+  text-align: right;
+  font-size: 1.05rem;
+  font-weight: bold;
+}
+
+.form-eliminar {
+  text-align: right;
+}
+
+.vacio p {
+  margin-bottom: 18px;
+}
+
+@media (max-width: 760px) {
+  .item-carrito {
+    grid-template-columns: 70px 1fr;
+  }
+
+  .item-acciones {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  .form-cantidad {
+    flex-wrap: wrap;
+  }
+}

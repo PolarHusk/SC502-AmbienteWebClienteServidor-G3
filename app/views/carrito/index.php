@@ -1,107 +1,44 @@
 <?php
 $titulo = 'SideGeek | Carrito';
+$cssAdicional = 'carrito.css';
 require __DIR__ . '/../layouts/header.php';
+
+$carrito = $data['carrito'] ?? [];
+$subtotal = $data['subtotal'] ?? 0;
+$total = $data['total'] ?? 0;
+$mensaje = $data['mensaje'] ?? null;
+$tipoMensaje = $data['tipoMensaje'] ?? null;
 ?>
 
 <main class="seccion">
     <div class="encabezado-seccion">
-        <p class="etiqueta">Compra</p>
-        <h1>Tu carrito</h1>
+        <div>
+            <p class="etiqueta">Compra</p>
+            <h1>Tu carrito</h1>
+        </div>
     </div>
 
+    <?php if ($mensaje): ?>
+        <div class="alerta <?= $tipoMensaje === 'error' ? 'alerta-error' : 'alerta-exito' ?>">
+            <?= htmlspecialchars($mensaje) ?>
+        </div>
+    <?php endif; ?>
+
     <section class="carrito-layout">
-        <div>
+        <div class="lista-carrito">
             <?php if (empty($carrito)): ?>
                 <div class="vacio">
-                    Tu carrito está vacío.
+                    <p>Tu carrito está vacío.</p>
+                    <a class="boton" href="<?= $base ?>/productos">Ver catálogo</a>
                 </div>
             <?php else: ?>
                 <?php foreach ($carrito as $item): ?>
-                    <article class="item-carrito">
-                        <div class="item-icono">🎁</div>
-
-                        <div>
-                            <p class="etiqueta">
-                                <?= htmlspecialchars($item['categoria']) ?>
-                            </p>
-
-                            <h3>
-                                <?= htmlspecialchars($item['nombre']) ?>
-                            </h3>
-
-                            <p>
-                                ₡<?= number_format($item['precio'], 0, ',', '.') ?>
-                                c/u
-                            </p>
-                        </div>
-
-                        <div class="item-acciones">
-                            <form method="POST" action="<?= $base ?>/carrito/actualizar">
-                                <input
-                                    type="hidden"
-                                    name="producto_id"
-                                    value="<?= $item['producto_id'] ?>"
-                                >
-
-                                <input
-                                    type="number"
-                                    name="cantidad"
-                                    min="1"
-                                    value="<?= $item['cantidad'] ?>"
-                                >
-
-                                <button class="boton" type="submit">
-                                    Actualizar
-                                </button>
-                            </form>
-
-                            <form method="POST" action="<?= $base ?>/carrito/eliminar">
-                                <input
-                                    type="hidden"
-                                    name="producto_id"
-                                    value="<?= $item['producto_id'] ?>"
-                                >
-
-                                <button class="boton boton-peligro" type="submit">
-                                    Eliminar
-                                </button>
-                            </form>
-                        </div>
-                    </article>
+                    <?php require __DIR__ . '/_item.php'; ?>
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
 
-        <aside class="resumen">
-            <h2>Resumen</h2>
-
-            <div class="fila-resumen">
-                <span>Subtotal</span>
-                <strong>
-                    ₡<?= number_format($subtotal ?? 0, 0, ',', '.') ?>
-                </strong>
-            </div>
-
-            <div class="fila-resumen">
-                <span>Envío</span>
-                <strong>Gratis</strong>
-            </div>
-
-            <hr>
-
-            <div class="fila-resumen total">
-                <span>Total</span>
-                <strong>
-                    ₡<?= number_format($total ?? 0, 0, ',', '.') ?>
-                </strong>
-            </div>
-
-            <?php if (!empty($carrito)): ?>
-                <a class="boton boton-ancho" href="<?= $base ?>/pedidos/checkout">
-                    Finalizar compra
-                </a>
-            <?php endif; ?>
-        </aside>
+        <?php require __DIR__ . '/_resumen.php'; ?>
     </section>
 </main>
 
