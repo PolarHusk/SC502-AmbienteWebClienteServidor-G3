@@ -6,7 +6,7 @@
                 alt="<?= htmlspecialchars($item['nombre']) ?>"
             >
         <?php else: ?>
-            🎁
+            
         <?php endif; ?>
     </div>
 
