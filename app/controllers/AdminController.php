@@ -1,10 +1,8 @@
 <?php
-
 require_once '../app/core/Controller.php';
 require_once '../app/models/Producto.php';
 
 class AdminController extends Controller {
-
     private $adminModel;
 
     public function __construct() {
@@ -186,3 +184,4 @@ class AdminController extends Controller {
         $this->redirect('/admin/index');
     }
 }
+

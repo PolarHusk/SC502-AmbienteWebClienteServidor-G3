@@ -1,5 +1,6 @@
 <?php
 
+
 require_once '../app/config/Database.php';
 
 class Admin {
@@ -125,4 +126,5 @@ class Admin {
             ->get_result()
             ->fetch_all(MYSQLI_ASSOC);
     }
+
 }

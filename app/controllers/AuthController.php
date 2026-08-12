@@ -1,22 +1,20 @@
 <?php
-
 require_once '../app/core/Controller.php';
 require_once '../app/config/Mailer.php';
 
 class AuthController extends Controller {
+    public function __construct() {
+        session_start();
+    }
 
     public function index() {
-
         if (isset($_SESSION['usuario'])) {
             $this->redirectSegunRol();
         }
-
         $this->view('auth/login');
     }
 
-
     public function login() {
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $correo = $_POST['correo'] ?? '';
@@ -61,49 +59,29 @@ class AuthController extends Controller {
                 );
 
             $this->redirectSegunRol();
-
         } else {
 
             $this->redirect('/auth/index');
         }
     }
 
-
     public function registro() {
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             $data = [
-                'nombre' => $_POST['nombre'] ?? '',
-                'correo' => $_POST['correo'] ?? '',
+                'nombre'     => $_POST['nombre'] ?? '',
+                'correo'     => $_POST['correo'] ?? '',
                 'contrasena' => $_POST['contrasena'] ?? ''
             ];
 
-
-          
-            if (
-                empty($data['nombre']) ||
-                empty($data['correo']) ||
-                empty($data['contrasena'])
-            ) {
-
-                $this->view('auth/registro', [
-                    'error' => 'Todos los campos son obligatorios'
-                ]);
-
+            if (empty($data['nombre']) || empty($data['correo']) || empty($data['contrasena'])) {
+                $this->view('auth/registro', ['error' => 'Todos los campos son obligatorios']);
                 return;
             }
 
-
             $usuarioModel = $this->model('Usuario');
 
-
-          
             if ($usuarioModel->getByCorreo($data['correo'])) {
-
-                $this->view('auth/registro', [
-                    'error' => 'El correo ya está registrado'
-                ]);
+                $this->view('auth/registro', ['error' => 'El correo ya está registrado']);
 
                 return;
             }
@@ -160,7 +138,11 @@ class AuthController extends Controller {
 
         } else {
 
-            $this->redirect('/producto/catalogo');
+            $this->redirect('/producto/catalogo'); //esto queda pendiente de crear un metodo catalogo en prodcutos controller
+        }
+    }
+}
+
         }
     }
 }

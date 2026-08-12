@@ -8,6 +8,7 @@ require __DIR__ . '/../layouts/header.php';
 
 <main class="contenedor-formulario">
 
+
     <form method="POST"
           action="<?= $base ?>/auth/login"
           class="formulario">
@@ -65,6 +66,7 @@ require __DIR__ . '/../layouts/header.php';
         Regístrate
     </a>
 </p>
+
 
     </form>
 

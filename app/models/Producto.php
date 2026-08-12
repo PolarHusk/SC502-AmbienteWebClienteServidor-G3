@@ -137,6 +137,7 @@ class Producto {
         return $productos;
     }
 
+
     public function crearProducto($data) {
 
     $query = "
@@ -233,6 +234,7 @@ public function eliminarProducto($id) {
 
     return $stmt->execute();
 }
+
 
 
 }

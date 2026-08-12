@@ -3,6 +3,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', 'Jinxpapa9570');
+
 define('DB_NAME', 'sidegeek');
 
 // Configuración de la URL base

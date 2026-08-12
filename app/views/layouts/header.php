@@ -21,6 +21,7 @@ $esAuth = isset($titulo) && (
 
     <link rel="stylesheet" href="<?= $base ?>/css/style.css">
     <link rel="stylesheet" href="<?= $base ?>/css/carrito.css">
+
 </head>
 
 <body>
@@ -72,5 +73,6 @@ $esAuth = isset($titulo) && (
         </nav>
 
     <?php endif; ?>
+
 
 </header>
