@@ -1,37 +1,76 @@
-<?php $base = '/SC502-AmbienteWebClienteServidor-G3/public'; ?>
+<?php
+
+$base = '/SC502-AmbienteWebClienteServidor-G3-main/public';
+
+
+$esAuth = isset($titulo) && (
+    $titulo === 'SideGeek | Iniciar sesión' ||
+    $titulo === 'SideGeek | Registro'
+);
+
+?>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title><?= $titulo ?? 'SideGeek' ?></title>
 
-    <link rel="stylesheet" href="<?= $base ?>/css/estilos.css">
+    <link rel="stylesheet" href="<?= $base ?>/css/style.css">
+    <link rel="stylesheet" href="<?= $base ?>/css/carrito.css">
 </head>
+
 <body>
 
 <header class="header">
+
     <a class="logo" href="<?= $base ?>/">
         Side<span>Geek</span>
     </a>
 
-    <nav class="nav">
-        <a href="<?= $base ?>/">Inicio</a>
-        <a href="<?= $base ?>/productos">Catálogo</a>
+    <?php if (!$esAuth): ?>
 
-        <?php if (isset($_SESSION['usuario'])): ?>
-            <a href="<?= $base ?>/pedidos/historial">Mis pedidos</a>
-            <a href="<?= $base ?>/logout">Cerrar sesión</a>
-        <?php else: ?>
-            <a href="<?= $base ?>/login">Iniciar sesión</a>
-        <?php endif; ?>
+        <nav class="nav">
 
-        <a href="<?= $base ?>/carrito">
-            Carrito
-            <span id="contador-carrito">
-                <?= count($_SESSION['carrito'] ?? []) ?>
-            </span>
-        </a>
-    </nav>
+            <a href="<?= $base ?>/producto/catalogo">
+                Inicio
+            </a>
+
+            <?php if (isset($_SESSION['usuario'])): ?>
+
+                <span class="usuario-nombre">
+                    Hola, <?= htmlspecialchars($_SESSION['usuario']['nombre']) ?>
+                </span>
+
+                <a href="<?= $base ?>/pedidos/historial">
+                    Pedidos
+                </a>
+
+                <a href="<?= $base ?>/auth/logout">
+                    Cerrar sesión
+                </a>
+
+                <a href="<?= $base ?>/carrito">
+                    Carrito
+
+                    <span id="contador-carrito">
+                        <?= (int) ($_SESSION['carrito_cantidad'] ?? 0) ?>
+                    </span>
+                </a>
+
+            <?php else: ?>
+
+                <a href="<?= $base ?>/auth/index">
+                    Iniciar sesión
+                </a>
+
+            <?php endif; ?>
+
+        </nav>
+
+    <?php endif; ?>
+
 </header>

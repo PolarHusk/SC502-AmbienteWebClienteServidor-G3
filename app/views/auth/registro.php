@@ -4,7 +4,7 @@ require __DIR__ . '/../layouts/header.php';
 ?>
 
 <main class="contenedor-formulario">
-    <form method="POST" action="<?= $base ?>/registro" class="formulario">
+    <form method="POST" action="<?= $base ?>/auth/registro" class="formulario">
         <p class="etiqueta">Crea tu cuenta</p>
         <h1>Registro</h1>
 

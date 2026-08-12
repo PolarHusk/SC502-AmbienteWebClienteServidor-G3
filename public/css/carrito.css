@@ -1,0 +1,130 @@
+.carrito-layout {
+    display: grid;
+    grid-template-columns: 1.4fr .6fr;
+    gap: 30px;
+}
+
+.item-carrito {
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 18px;
+    margin-bottom: 14px;
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 15px;
+}
+
+.item-icono {
+    width: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: var(--panel-claro);
+    border-radius: 12px;
+}
+
+.item-icono img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.item-info {
+    min-width: 0;
+}
+
+.item-info .etiqueta {
+    margin: 0 0 5px;
+}
+
+.item-info h3,
+.item-info p {
+    margin: 4px 0;
+}
+
+.item-info small {
+    display: block;
+    margin-top: 5px;
+    color: var(--texto-secundario);
+}
+
+.item-acciones {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    min-width: 0;
+}
+
+.form-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-cantidad input {
+    width: 72px;
+}
+
+.form-eliminar {
+    margin: 0;
+}
+
+.subtotal-item {
+    text-align: right;
+    font-size: 1.05rem;
+    font-weight: bold;
+}
+
+.resumen {
+    position: sticky;
+    top: 95px;
+}
+
+@media (max-width: 900px) {
+    .carrito-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .item-carrito {
+        grid-template-columns: 90px 1fr;
+    }
+
+    .item-icono {
+        width: 90px;
+        height: 90px;
+    }
+
+    .item-acciones {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .resumen {
+        position: static;
+    }
+}
+
+@media (max-width: 560px) {
+    .item-carrito {
+        grid-template-columns: 75px 1fr;
+        gap: 14px;
+    }
+
+    .item-icono {
+        width: 75px;
+        height: 75px;
+    }
+
+    .item-acciones,
+    .form-cantidad {
+        flex-wrap: wrap;
+    }
+}

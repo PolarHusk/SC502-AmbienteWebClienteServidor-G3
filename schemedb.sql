@@ -296,15 +296,106 @@ INSERT INTO categorias (nombre, slug) VALUES
   ('Figuras coleccionables', 'figuras-coleccionables');
 
 INSERT INTO productos
-(categoria_id, nombre, descripcion, imagen_principal_url, precio, stock, descuento_porcentaje, es_nuevo_lanzamiento)
-VALUES
-  (1, 'The Legend of Zelda', 'Aventura épica con exploración, acertijos y combates.', NULL, 28500.00, 8, 0, 0),
-  (1, 'Spider-Man: Miles Morales', 'Recorre la ciudad y conviértete en un nuevo Spider-Man.', NULL, 24000.00, 5, 10, 0),
-  (2, 'One Piece Vol. 1', 'El inicio de la gran aventura de Monkey D. Luffy.', NULL, 7500.00, 12, 0, 1),
-  (2, 'Jujutsu Kaisen Vol. 1', 'Acción sobrenatural, maldiciones y hechiceros.', NULL, 8000.00, 3, 5, 0),
-  (3, 'Batman: Año Uno', 'Una historia esencial sobre los primeros pasos de Batman.', NULL, 11500.00, 7, 0, 0),
-  (3, 'Avengers: Infinity', 'Los héroes más poderosos enfrentan una amenaza cósmica.', NULL, 13500.00, 2, 15, 1),
-  (4, 'Figura de colección - Spider-Man', 'Figura coleccionable para exhibición.', NULL, 32000.00, 4, 0, 1);
+  (categoria_id, nombre, descripcion, imagen_principal_url, precio, stock, descuento_porcentaje, es_nuevo_lanzamiento)
+SELECT
+  c.id,
+  'The Legend of Zelda',
+  'Aventura épica con exploración, acertijos y combates.',
+  'https://upload.wikimedia.org/wikipedia/en/thumb/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg/250px-The_Legend_of_Zelda_Breath_of_the_Wild.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail',
+  28500.00,
+  8,
+  0,
+  0
+FROM categorias c
+WHERE c.slug = 'videojuegos'
+UNION ALL
+SELECT
+  c.id,
+  'Spider-Man: Miles Morales',
+  'Recorre la ciudad y conviértete en un nuevo Spider-Man.',
+  'https://image.api.playstation.com/vulcan/ap/rnd/202008/1020/T45iRN1bhiWcJUzST6UFGBvO.png',
+  24000.00,
+  5,
+  10,
+  0
+FROM categorias c
+WHERE c.slug = 'videojuegos'
+UNION ALL
+SELECT
+  c.id,
+  'One Piece Vol. 1',
+  'El inicio de la gran aventura de Monkey D. Luffy.',
+  'https://m.media-amazon.com/images/I/91NxYvUNf6L._SL1500_.jpg',
+  7500.00,
+  12,
+  0,
+  1
+FROM categorias c
+WHERE c.slug = 'mangas'
+UNION ALL
+SELECT
+  c.id,
+  'Jujutsu Kaisen Vol. 1',
+  'Acción sobrenatural, maldiciones y hechiceros.',
+  'https://m.media-amazon.com/images/I/81jxwTCbzTL._UF1000,1000_QL80_.jpg',
+  8000.00,
+  3,
+  5,
+  0
+FROM categorias c
+WHERE c.slug = 'mangas'
+UNION ALL
+SELECT
+  c.id,
+  'Batman: Año Uno',
+  'Una historia esencial sobre los primeros pasos de Batman.',
+  'https://m.media-amazon.com/images/I/61PmYEhb60L._AC_UF1000,1000_QL80_.jpg',
+  11500.00,
+  7,
+  0,
+  0
+FROM categorias c
+WHERE c.slug = 'comics'
+UNION ALL
+SELECT
+  c.id,
+  'Avengers: Infinity',
+  'Los héroes más poderosos enfrentan una amenaza cósmica.',
+  'https://m.media-amazon.com/images/M/MV5BOGVkODYxMDEtODczZC00MjRiLTg3ZWYtZjgzN2QyMDBjZTUzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
+  13500.00,
+  2,
+  15,
+  1
+FROM categorias c
+WHERE c.slug = 'comics'
+UNION ALL
+SELECT
+  c.id,
+  'Figura de colección - Spider-Man',
+  'Figura coleccionable para exhibición.',
+  'https://www.milcomics.com/1259897-home_default/spider-man-no-way-home-figura-deluxe-spider-man-integrated-suit-hot-toys-29-cm.jpg',
+  32000.00,
+  4,
+  0,
+  1
+FROM categorias c
+WHERE c.slug = 'figuras-coleccionables';
+
+INSERT INTO producto_imagenes (producto_id, url_imagen, es_principal)
+SELECT
+  p.id,
+  p.imagen_principal_url,
+  1
+FROM productos p
+WHERE p.nombre IN (
+  'The Legend of Zelda',
+  'Spider-Man: Miles Morales',
+  'One Piece Vol. 1',
+  'Jujutsu Kaisen Vol. 1',
+  'Batman: Año Uno',
+  'Avengers: Infinity',
+  'Figura de colección - Spider-Man'
+);
 
 
 CREATE VIEW vw_pedidos_completados AS
@@ -335,3 +426,12 @@ INNER JOIN categorias c ON c.id = pr.categoria_id
 WHERE pe.estado = 'completado'
 GROUP BY c.nombre, pr.nombre
 ORDER BY unidades_vendidas DESC;
+
+
+INSERT INTO usuarios (rol_id, nombre, correo, contrasena_hash) VALUES 
+(
+  (SELECT id FROM roles WHERE nombre = 'admin'),
+  'Administrador',
+  'admin@example.com',
+  '$2y$10$RU1apI4ISeOiEmJsjeDTr.QXGIZ3X6r3Azg/bT/YHvqtd.0gfUxky'
+);
