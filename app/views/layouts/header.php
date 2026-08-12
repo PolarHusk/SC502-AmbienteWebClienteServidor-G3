@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $titulo ?? 'SideGeek' ?></title>
 
-    <link rel="stylesheet" href="<?= $base ?>/css/estilos.css">
+    <link rel="stylesheet" href="<?= $base ?>/css/style.css">
 </head>
 <body>
 

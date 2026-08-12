@@ -2,7 +2,7 @@
 // Configuración de la base de datos
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASS', '1234');
 define('DB_NAME', 'sidegeek');
 
 // Configuración de la URL base

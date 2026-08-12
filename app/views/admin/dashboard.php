@@ -9,7 +9,7 @@ $base = '/SC502-AmbienteWebClienteServidor-G3/public';
     <meta charset="UTF-8">
     <title><?= $titulo ?></title>
 
-    <link rel="stylesheet" href="<?= $base ?>/css/estilos.css">
+    <link rel="stylesheet" href="<?= $base ?>/css/style.css">
     <link rel="stylesheet" href="<?= $base ?>/css/admin.css">
 </head>
 <body class="admin-body">
