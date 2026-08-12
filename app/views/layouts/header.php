@@ -22,9 +22,10 @@
 
         <?php if (isset($_SESSION['usuario'])): ?>
             <a href="<?= $base ?>/pedidos/historial">Mis pedidos</a>
-            <a href="<?= $base ?>/logout">Cerrar sesión</a>
+            <a href="<?= $base ?>/auth/logout">Cerrar sesión</a>
         <?php else: ?>
-            <a href="<?= $base ?>/login">Iniciar sesión</a>
+            <a href="<?= $base ?>/auth/index">Iniciar sesión</a>
+
         <?php endif; ?>
 
         <a href="<?= $base ?>/carrito">
