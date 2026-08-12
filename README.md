@@ -49,7 +49,7 @@ Ejemplo:
 $host = "localhost";
 $user = "root";
 $password = "";
-$database = "tienda_geek";
+$database = "sidegeek";
 ```
 
 Verificar que el nombre de la base de datos coincida con la creada en MySQL Workbench.
