@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $titulo ?? 'SideGeek' ?></title>
 
-    <link rel="stylesheet" href="<?= $base ?>/css/estilos.css">
+    <link rel="stylesheet" href="<?= $base ?>/css/style.css">
 </head>
 <body>
 
@@ -22,9 +22,10 @@
 
         <?php if (isset($_SESSION['usuario'])): ?>
             <a href="<?= $base ?>/pedidos/historial">Mis pedidos</a>
-            <a href="<?= $base ?>/logout">Cerrar sesión</a>
+            <a href="<?= $base ?>/auth/logout">Cerrar sesión</a>
         <?php else: ?>
-            <a href="<?= $base ?>/login">Iniciar sesión</a>
+            <a href="<?= $base ?>/auth/index">Iniciar sesión</a>
+
         <?php endif; ?>
 
         <a href="<?= $base ?>/carrito">

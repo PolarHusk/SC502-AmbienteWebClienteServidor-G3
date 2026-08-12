@@ -4,7 +4,7 @@ require __DIR__ . '/../layouts/header.php';
 ?>
 
 <main class="contenedor-formulario">
-    <form method="POST" action="<?= $base ?>/login" class="formulario">
+    <form method="POST" action="<?= $base ?>/auth/login" class="formulario">
         <p class="etiqueta">Bienvenido</p>
         <h1>Iniciar sesión</h1>
 
@@ -39,7 +39,7 @@ require __DIR__ . '/../layouts/header.php';
 
         <p>
             ¿No tienes cuenta?
-            <a class="enlace" href="<?= $base ?>/registro">
+         <a class="enlace" href="<?= $base ?>/auth/registro">Regístrate</a>
                 Regístrate
             </a>
         </p>
