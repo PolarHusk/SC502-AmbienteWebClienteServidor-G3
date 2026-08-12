@@ -18,8 +18,7 @@
 
     <nav class="nav">
         <a href="<?= $base ?>/">Inicio</a>
-        <a href="<?= $base ?>/productos">Catálogo</a>
-
+        <a href="<?= $base ?>/producto/catalogo">Catálogo</a>
         <?php if (isset($_SESSION['usuario'])): ?>
             <a href="<?= $base ?>/pedidos/historial">Mis pedidos</a>
             <a href="<?= $base ?>/auth/logout">Cerrar sesión</a>
