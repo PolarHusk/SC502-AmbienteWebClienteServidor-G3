@@ -80,9 +80,9 @@ class AuthController extends Controller {
 
     private function redirectSegunRol() {
         if ($_SESSION['usuario']['rol'] === 'admin') {
-            $this->redirect('/user/index');
+            $this->redirect('/admin/index');
         } else {
-            $this->redirect('/productos/catalogo'); //esto queda pendiente de crear un metodo catalogo en prodcutos controller
+            $this->redirect('/producto/catalogo'); //esto queda pendiente de crear un metodo catalogo en prodcutos controller
         }
     }
 }

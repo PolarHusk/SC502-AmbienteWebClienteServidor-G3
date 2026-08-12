@@ -24,8 +24,7 @@ $base = '/SC502-AmbienteWebClienteServidor-G3/public';
         <a href="#productos">Productos</a>
         <a href="#inventario">Inventario</a>
         <a href="#pedidos">Pedidos</a>
-        <a href="<?= $base ?>/logout">Cerrar sesión</a>
-    </nav>
+        <a href="<?= $base ?>/auth/logout">Cerrar sesión</a>    </nav>
 </aside>
 
 <main class="admin-main">
