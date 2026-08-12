@@ -34,9 +34,6 @@ require __DIR__ . '/../layouts/header.php';
             <option value="nombre">Nombre</option>
         </select>
 
-        <button class="boton" type="submit">
-            Filtrar
-        </button>
     </form>
 
     <p class="mensaje" id="mensaje-catalogo" aria-live="polite">
