@@ -335,3 +335,12 @@ INNER JOIN categorias c ON c.id = pr.categoria_id
 WHERE pe.estado = 'completado'
 GROUP BY c.nombre, pr.nombre
 ORDER BY unidades_vendidas DESC;
+
+
+INSERT INTO usuarios (rol_id, nombre, correo, contrasena_hash) VALUES 
+(
+  (SELECT id FROM roles WHERE nombre = 'admin'),
+  'Administrador',
+  'admin@example.com',
+  '$2y$10$RU1apI4ISeOiEmJsjeDTr.QXGIZ3X6r3Azg/bT/YHvqtd.0gfUxky'
+);
