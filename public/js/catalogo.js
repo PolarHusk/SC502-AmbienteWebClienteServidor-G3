@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formulario = document.querySelector('#filtros-catalogo');
     const inputBuscar = document.querySelector('#buscar-producto');
     const filtroCategoria = document.querySelector('#filtro-categoria');
+    const filtroCaracteristica = document.querySelector('#filtro-caracteristica');
     const filtroOrden = document.querySelector('#filtro-orden');
     const grid = document.querySelector('#grid-productos');
     const mensaje = document.querySelector('#mensaje-catalogo');
@@ -67,6 +68,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const descripcion = document.createElement('p');
         descripcion.textContent = producto.descripcion;
 
+        const etiquetas = document.createElement('div');
+        etiquetas.className = 'producto-etiquetas';
+
+        if (Number(producto.descuento_porcentaje) > 0) {
+            const descuento = document.createElement('span');
+            descuento.className = 'badge badge-descuento';
+            descuento.textContent = `-${producto.descuento_porcentaje}%`;
+            etiquetas.appendChild(descuento);
+        }
+
+        if (Number(producto.es_nuevo_lanzamiento) === 1) {
+            const nuevo = document.createElement('span');
+            nuevo.className = 'badge badge-nuevo';
+            nuevo.textContent = 'Nuevo';
+            etiquetas.appendChild(nuevo);
+        }
+
         const stock = document.createElement('p');
         stock.textContent = `Stock: ${producto.stock}`;
 
@@ -83,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         enlaceDetalle.textContent = 'Ver detalle';
 
         pie.append(precio, enlaceDetalle);
-        informacion.append(categoria, nombre, descripcion, stock, pie);
+        informacion.append(categoria, nombre, descripcion, etiquetas, stock, pie);
         card.append(enlaceImagen, informacion);
 
         return card;
@@ -91,16 +109,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function aplicarFiltrosLocales() {
         const textoBusqueda = inputBuscar.value.trim().toLowerCase();
+        const caracteristica = filtroCaracteristica.value;
         const orden = filtroOrden.value;
 
         let productosFiltrados = productosActuales.filter(producto => {
             const nombre = producto.nombre.toLowerCase();
             const descripcion = producto.descripcion.toLowerCase();
 
-            return (
+            const coincideBusqueda = (
                 nombre.includes(textoBusqueda) ||
                 descripcion.includes(textoBusqueda)
             );
+
+            const coincideCaracteristica =
+                caracteristica === '' ||
+                (caracteristica === 'descuento' &&
+                    Number(producto.descuento_porcentaje) > 0) ||
+                (caracteristica === 'nuevo' &&
+                    Number(producto.es_nuevo_lanzamiento) === 1);
+
+            return coincideBusqueda && coincideCaracteristica;
         });
 
         if (orden === 'menor') {
@@ -216,6 +244,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     filtroCategoria.addEventListener('change', cargarProductos);
+
+    filtroCaracteristica.addEventListener('change', aplicarFiltrosLocales);
 
     filtroOrden.addEventListener('change', aplicarFiltrosLocales);
 

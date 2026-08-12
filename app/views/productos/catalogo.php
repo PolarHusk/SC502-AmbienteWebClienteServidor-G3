@@ -27,6 +27,12 @@ require __DIR__ . '/../layouts/header.php';
             <option value="">Cargando categorías...</option>
         </select>
 
+        <select id="filtro-caracteristica">
+            <option value="">Todos los productos</option>
+            <option value="descuento">Con descuento</option>
+            <option value="nuevo">Nuevos lanzamientos</option>
+        </select>
+
         <select id="filtro-orden">
             <option value="">Ordenar por</option>
             <option value="menor">Precio menor</option>

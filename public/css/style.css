@@ -277,9 +277,37 @@ button, input, select {
 
 .filtros {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2fr repeat(3, 1fr);
   gap: 15px;
   margin-bottom: 20px;
+}
+
+.producto-etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.badge {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  min-height: 26px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.badge-descuento {
+  background: var(--peligro);
+}
+
+.badge-nuevo {
+  background: #16a34a;
 }
 
 input, select {
