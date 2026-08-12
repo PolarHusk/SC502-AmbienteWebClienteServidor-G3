@@ -1,6 +1,6 @@
 # SC502-AmbienteWebClienteServidor-G3
 
-# Manual de instalación / Installation Manual
+# Manual de instalación
 
 ---
 
